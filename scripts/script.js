@@ -53,9 +53,11 @@ const productForm =document.getElementById("productForm");
 
 
 function showData(){
+    let totalPrice =0;
     const tableBody = document.getElementById("productTableBody");
     tableBody.innerHTML=` `;
     data.forEach(element => {
+        totalPrice+=element.productPrice*element.productQuantity;
         const tableRow = document.createElement("tr");
         tableRow.innerHTML=`
             <td class="py-2 px-4 border-b text-center">${element.productName}</td>
@@ -63,6 +65,7 @@ function showData(){
             <td class="py-2 px-4 border-b text-center">${element.productPrice}</td>
             <td class="py-2 px-4 border-b text-center">${element.productVendor}</td>
             <td class="py-2 px-4 border-b text-center">${element.productCategory}</td>
+            <td class="py-2 px-4 border-b text-center">${element.productPrice*element.productQuantity}</td>
             <td class="py-2 px-4 border-b text-center">
           <button class="bg-green py-1 px-3 text-white rounded hover: bg-green-800" onclick="editProduct('${element.productName}')">edit</button>
           <button class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-700" onclick="deleteProduct('${element.productName}')">Delete</button>
@@ -70,7 +73,12 @@ function showData(){
         `;
         tableBody.appendChild(tableRow);
     });
-    
+    const tabRow = document.createElement("tr");
+        tabRow.innerHTML=`
+        <td colspan="5" class="py-2 px-4 border-b text-right">Total Bill = </td>
+        <td class="py-2 px-4 border-b text-center">${totalPrice}</td>
+        `
+    tableBody.appendChild(tabRow);
 }
 
 
