@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-6">
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Inventory Management System</h1>
+
+    <!-- Form to add/edit product -->
+    <form id="productForm" class="mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+        <input type="hidden" id="productId">
+        <input type="text" id="productName" placeholder="Product Name" class="p-2 border border-gray-300 rounded">
+        <input type="number" id="productQuantity" placeholder="Quantity" class="p-2 border border-gray-300 rounded">
+        <input type="number" id="productPrice" placeholder="Price" class="p-2 border border-gray-300 rounded">
+        <input type="text" id="productVendor" placeholder="Vendor" class="p-2 border border-gray-300 rounded">
+        <input type="text" id="productCategory" placeholder="Category" class="p-2 border border-gray-300 rounded">
+      </div>
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">Save Product</button>
+    </form>
+
+    <!-- Table to display products -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border-b text-center">Product Name</th>
+            <th class="py-2 px-4 border-b text-center">Quantity</th>
+            <th class="py-2 px-4 border-b text-center">Price</th>
+            <th class="py-2 px-4 border-b text-center">Vendor</th>
+            <th class="py-2 px-4 border-b text-center">Category</th>
+            <th class="py-2 px-4 border-b text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <!-- Product rows will be appended here by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
