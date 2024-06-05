@@ -12,7 +12,7 @@ const data =[
     {
         producId: 2,
         productName: "Google Pixel 7 pro",
-        productQuantity:1,
+        productQuantity:2,
         productPrice: 75000,
         productVendor:"Google",
         productCategory:"SmartPhone"
@@ -75,7 +75,7 @@ function showData(){
     });
     const tabRow = document.createElement("tr");
         tabRow.innerHTML=`
-        <td colspan="5" class="py-2 px-4 border-b text-right">Total Bill = </td>
+        <td colspan="5" class="py-2 px-4 border-b text-right">Total Amount  = </td>
         <td class="py-2 px-4 border-b text-center">${totalPrice}</td>
         `
     tableBody.appendChild(tabRow);
