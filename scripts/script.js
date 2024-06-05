@@ -91,7 +91,7 @@ function editProduct(productName){
         document.getElementById("productCategory").value=dataToEdit.productCategory
        
         productForm.removeEventListener('submit',myFunction);
-        productForm.addEventListener('submit' , function(event){
+           function myEditFunction(event){
             event.preventDefault();
             const formData = {
                 productName: document.getElementById("productName").value,
@@ -104,9 +104,11 @@ function editProduct(productName){
             showData();
             console.log("Its Working")
             productForm.reset();
-            productForm.removeEventListener('submit', arguments.callee);
+            productForm.removeEventListener('submit',myEditFunction );
             productForm.addEventListener('submit' , myFunction);
-        });
+           }
             
-}
+           productForm.addEventListener('submit' , myEditFunction);
+           
+        }
 
