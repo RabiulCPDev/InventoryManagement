@@ -27,12 +27,17 @@ const data =[
     },
 ];
 
+// show the initial product 
+
 showData();
 
 
-document.getElementById("productForm").addEventListener('submit' , myFunction);
+const productForm =document.getElementById("productForm");
 
-function myFunction (event){
+
+    productForm.addEventListener('submit' , myFunction);
+
+    function myFunction (event){
     event.preventDefault();
     const formData = {
         productName: document.getElementById("productName").value,
@@ -42,10 +47,9 @@ function myFunction (event){
         productCategory: document.getElementById("productCategory").value
     }
     data.push(formData);
-   showData();   
-}
-
-
+    showData();
+    productForm.reset();
+   }
 
 
 function showData(){
@@ -64,14 +68,10 @@ function showData(){
           <button class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-700" onclick="deleteProduct('${element.productName}')">Delete</button>
           </td>
         `;
-        console.log(element);
-       
         tableBody.appendChild(tableRow);
     });
     
 }
-
-
 
 
 function deleteProduct(productName){
@@ -80,3 +80,33 @@ function deleteProduct(productName){
    else console.log("No data found to Delete");
     showData();
 }
+
+function editProduct(productName){
+    const index = data.findIndex(product=> product.productName==productName);
+    const dataToEdit= data[index];
+        document.getElementById("productName").value=dataToEdit.productName,
+        document.getElementById("productQuantity").value=dataToEdit.productQuantity,
+        document.getElementById("productPrice").value=dataToEdit.productPrice,
+        document.getElementById("productVendor").value=dataToEdit.productVendor,
+        document.getElementById("productCategory").value=dataToEdit.productCategory
+       
+        productForm.removeEventListener('submit',myFunction);
+        productForm.addEventListener('submit' , function(event){
+            event.preventDefault();
+            const formData = {
+                productName: document.getElementById("productName").value,
+                productQuantity: document.getElementById("productQuantity").value,
+                productPrice: document.getElementById("productPrice").value,
+                productVendor: document.getElementById("productVendor").value,
+                productCategory: document.getElementById("productCategory").value
+            }
+            data [index]= formData;
+            showData();
+            console.log("Its Working")
+            productForm.reset();
+            productForm.removeEventListener('submit', arguments.callee);
+            productForm.addEventListener('submit' , myFunction);
+        });
+            
+}
+
